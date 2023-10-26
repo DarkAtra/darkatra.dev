@@ -3,8 +3,6 @@ title: "OpenSpy Support for Battle for Middle-Earth 2"
 date: 2023-10-26
 ---
 
-# Motivation
-
 Some of you might be familiar
 with [The Lord of the Rings, The Battle for Middle Earth II](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Battle_for_Middle-earth_II).
 It's one of many real-time strategy games released in 2006, yet it's something special, for me at least.
