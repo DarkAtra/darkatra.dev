@@ -1,3 +1,8 @@
 theme: minima
+author:
+  name: Tommy Schmidt
+  email: "darkatra@gmail.com"
 minima:
   skin: dark
+  social_links:
+    - { platform: github,  user_url: "https://github.com/DarkAtra" }
