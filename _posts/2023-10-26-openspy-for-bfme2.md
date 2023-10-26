@@ -25,7 +25,7 @@ t3a:online seemed quite high. Obviously this was quite disappointing for me as I
 
 A few months ago I stumbled upon [an open source project](https://github.com/chc/openspy-core-v2) that aims to restore the online functionality for GameSpy
 based games. Unfortunately, The Battle for Middle Earth II was not yet supported.
-However, it greatly improved the chances of ever having an open source server for The Battle for Middle Earth II.
+However, it greatly improved the chances of ever having open source online servers for The Battle for Middle Earth II.
 This is a big deal, as t3a:online could easily die if the maintainers lose interest.
 
 # The client side
