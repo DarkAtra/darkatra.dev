@@ -5,7 +5,7 @@ date: 2023-10-26
 
 # Motivation
 
-Some of you may be familiar
+Some of you might be familiar
 with [The Lord of the Rings, The Battle for Middle Earth II](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Battle_for_Middle-earth_II).
 It is one of many strategy games released in 2006, yet it holds a special place in my heart.
 Maybe because it is set in the world of JRR Tolkien or perhaps just because it reminds me of my childhood.
