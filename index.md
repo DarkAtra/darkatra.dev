@@ -1,3 +1,3 @@
 ---
-title: DarkAtra.dev Blog
+title: Blog
 ---
