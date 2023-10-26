@@ -1,4 +1,7 @@
 ---
-title: Welcome to my blog
+title: DarkAtra.dev Blog
 ---
 
+# Blog
+
+Test
