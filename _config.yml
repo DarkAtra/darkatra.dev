@@ -1,4 +1,8 @@
-theme: minima
+plugins:
+  - jekyll-remote-theme
+
+remote_theme: jekyll/minima
+
 author:
   name: Tommy Schmidt
   email: "darkatra@gmail.com"
