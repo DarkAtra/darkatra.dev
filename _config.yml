@@ -3,3 +3,4 @@ theme: minima
 author: Tommy Schmidt
 email: darkatra@gmail.com
 github_username: DarkAtra
+show_excerpts: true
