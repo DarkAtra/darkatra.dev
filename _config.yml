@@ -1,6 +1,17 @@
-# See: https://github.com/jekyll/minima/blob/2.5-stable/_config.yml
-theme: minima
-author: Tommy Schmidt
-email: darkatra@gmail.com
-github_username: DarkAtra
+# See: https://github.com/jekyll/minima/blob/master/_config.yml
+plugins:
+  - jekyll-remote-theme
+
+remote_theme: jekyll/minima@85374864e0311f544f49139078927b41ecbe8792
+
+author:
+  name: Tommy Schmidt
+  email: darkatra@gmail.com
+
+minima:
+  skin: dark
+  social_links:
+    - platform: github
+      user_url: "https://github.com/DarkAtra"
+
 show_excerpts: true
