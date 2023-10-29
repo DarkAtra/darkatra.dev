@@ -14,11 +14,12 @@ If you've ever tried to play the game in multiplayer, you've probably noticed th
 While the community has found many ways to continue playing against each other, for example via [GameRanger](https://en.wikipedia.org/wiki/GameRanger),
 only [T3A:Online](https://t3aonline.net) managed to restore the games original online feature.
 They achieved this by building their own GameSpy servers and then modified the game to use these instead of the original ones.
+
 As a software developer, I have always wondered how exactly stuff like this works. To my surprise, the source code was not available.
 Neither for the t3a online servers, nor for the client side modifications to the game.
 The reasoning seemed to be simple: they didn't want the community to fragment any further.
 The risk of introducing additional servers that could compete with T3A:Online seemed quite high.
-Obviously this was quite disappointing for me as I could not satisfy my thirst for knowledge.
+Obviously this was quite disappointing for me as I had no reference to learn from.
 But there is another problem with that: the service could simply die if the maintainers lose interest.
 Not to mention that it also hinders others in the community from contributing bugfixes and features.
 
