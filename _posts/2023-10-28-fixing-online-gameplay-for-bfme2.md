@@ -31,21 +31,20 @@ Well, let's [attempt to change that](https://github.com/anzz1/openspy-client/iss
 
 ## The client side
 
-It's easier to start with the client side as it's fairly simple to verify my implementation by just testing if a connection to the existing T3A:Online servers
-can be established.
+It's easier to start with the client side as it's fairly simple to verify by just testing if a connection to the existing T3A:Online servers can be established.
 By looking at
 how [the online functionality for other games is restored](https://github.com/anzz1/openspy-client/blob/f18d410fc0cfe2e69ec32e93f088209527093749/include/game_cry.h#L90-L95),
-I assumed that there's only two things for me to do:
+I assumed that there's only two things to implement:
 
-1. hook the `gethostbyname` function to redirect GameSpy/EA specific DNS queries
-2. patch the game so that it skips the certificate validation whenever it connects to the online servers
+1. a hook for the `gethostbyname` function that redirect GameSpy/EA specific DNS queries
+2. a patch so that the game skips the certificate validation when it connects to the online servers
 
-I found the addresses that I had to intercept DNS queries for by looking at the `t3aonline.dll` with [Ghidra](https://github.com/NationalSecurityAgency/ghidra),
+I found the hosts that I had to redirect DNS queries for by looking at the `t3aonline.dll` with [Ghidra](https://github.com/NationalSecurityAgency/ghidra),
 a software reverse engineering framework created and maintained by the NSA Research Directorate.
 
 ![A screenshot of the decompiled t3aonline.dll](/assets/bfme2-ghidra-t3a-online.png)
 
-The screenshot above shows only a few lines of the decompiled function, and it was a real mess to untangle all the nested if statements and loops but here is
+The screenshot above only shows a few lines of the decompiled function, and it was a real mess to untangle all the nested if statements and loops but here is
 what it looks like:
 
 ```cpp
@@ -101,28 +100,28 @@ hostent *WSAAPI Hooked_gethostbyname(const char *name) {
 }
 ```
 
-I quickly validated that the dll was indeed redirecting dns queries using [wireshark](https://gitlab.com/wireshark/wireshark/-/tree/master), another great open
-source tool that allows you to inspect network traffic.
+I quickly added the EasyHook hooking code and then validated that my dll was indeed redirecting dns queries
+using [wireshark](https://gitlab.com/wireshark/wireshark/-/tree/master), another great open source tool that allows you to inspect network traffic.
 
 ![A screenshot of wireshark showing successfully redirected dns queries](/assets/bfme2-wireshark-dns-capturepng.png)
 
-At this point, I was able to view to login mask in game, but it didn't let me connect to the servers as the certificate validation was still failing.
-I accidentally stumbled across [this GitHub repository](https://github.com/Aim4kill/Bug_OldProtoSSL) which demonstrated a bug in EA's certificate validation
-based on [the source code for EA's webkit](https://github.com/xebecnan/EAWebkit) that was used in Need for Speed World. I managed to locate the exact same bug
-in The Battle for Middle Earth II.
+At this point, I was able to view the login mask in game, but it didn't let me connect to the servers as the certificate was still considered invalid.
+After searching for a fix for a few days, I accidentally stumbled across [this GitHub repository](https://github.com/Aim4kill/Bug_OldProtoSSL) which
+demonstrates a bug in EA's certificate validation based on [the source code for EA's webkit](https://github.com/xebecnan/EAWebkit) used in Need for Speed World.
+I managed to locate the exact same bug in The Battle for Middle Earth II.
 
 ![A screenshot of the certificate bug in battle for middle earth 2](/assets/bfme2-ghidra-cert-validation-bug.png)
 
-I looked where to insert a jump instruction so that the game always thinks the certificate has an unknown signature. I found that the easiest way was to insert
-it in line 228 as seen in the following screenshot:
+I looked where I could insert a jump instruction so that the game would always think the certificate had an unknown signature.
+The easiest way I've found was to insert it in line 228, as shown in the following screenshot:
 
 ![A screenshot of the location of the jump instruction to abuse the certificate bug in battle for middle earth 2](/assets/bfme2-ghidra-cert-validation-bug-jump-instruction.png)
 
-I validated this using [CheatEngine](https://github.com/cheat-engine/cheat-engine), a tool that allows you to inspect and change the memory of processes.
-I attached myself to the game process and then jumped to `game.dat+00a8d096` which is the address of the if statement in line 228.
-Next, I simply changed the instruction to jump to `00A8D0DE` which is the address of line 237.
+Using [CheatEngine](https://github.com/cheat-engine/cheat-engine) I was able to quickly validate that my change really worked.
+I attached myself to the game process and then jumped to `game.dat+00a8d096`, which is the address of the if statement on line 228.
+Then I changed the statement so that it jumps to `00A8D0DE`, which is line 237. I was now able to successfully log in to the T3A:Online servers.
 
-Now all there was left to do write some code that does all of this automatically. Here is what it looks like:
+Now all that was left was to write code that would do all of this automatically. This is how it looks like:
 
 ```cpp
 HANDLE currentProcess = GetCurrentProcess();
