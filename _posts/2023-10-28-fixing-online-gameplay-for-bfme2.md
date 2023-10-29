@@ -42,7 +42,7 @@ I assumed that there's only two things to implement:
 I found the hosts that I had to redirect DNS queries for by looking at the `t3aonline.dll` with [Ghidra](https://github.com/NationalSecurityAgency/ghidra),
 a software reverse engineering framework created and maintained by the NSA Research Directorate.
 
-![A screenshot of the decompiled t3aonline.dll](/assets/bfme2-ghidra-t3a-online.png)
+[![A screenshot of the decompiled t3aonline.dll](/assets/bfme2-ghidra-t3a-online.png)](/assets/bfme2-ghidra-t3a-online.png)
 
 The screenshot above only shows a few lines of the decompiled function, and it was a real mess to untangle all the nested if statements and loops but here is
 what it looks like:
@@ -103,19 +103,19 @@ hostent *WSAAPI Hooked_gethostbyname(const char *name) {
 I quickly added the EasyHook hooking code and then validated that my dll was indeed redirecting dns queries
 using [wireshark](https://gitlab.com/wireshark/wireshark/-/tree/master), another great open source tool that allows you to inspect network traffic.
 
-![A screenshot of wireshark showing successfully redirected dns queries](/assets/bfme2-wireshark-dns-capturepng.png)
+[![A screenshot of wireshark showing successfully redirected dns queries](/assets/bfme2-wireshark-dns-capturepng.png)](/assets/bfme2-wireshark-dns-capturepng.png)
 
 At this point, I was able to view the login mask in game, but it didn't let me connect to the servers as the certificate was still considered invalid.
 After searching for a fix for a few days, I accidentally stumbled across [this GitHub repository](https://github.com/Aim4kill/Bug_OldProtoSSL) which
 demonstrates a bug in EA's certificate validation based on [the source code for EA's webkit](https://github.com/xebecnan/EAWebkit) used in Need for Speed World.
 I managed to locate the exact same bug in The Battle for Middle Earth II.
 
-![A screenshot of the certificate bug in battle for middle earth 2](/assets/bfme2-ghidra-cert-validation-bug.png)
+[![A screenshot of the certificate bug in battle for middle earth 2](/assets/bfme2-ghidra-cert-validation-bug.png)](/assets/bfme2-ghidra-cert-validation-bug.png)
 
 I looked where I could insert a jump instruction so that the game would always think the certificate had an unknown signature.
 The easiest way I've found was to insert it in line 228, as shown in the following screenshot:
 
-![A screenshot of the location of the jump instruction to abuse the certificate bug in battle for middle earth 2](/assets/bfme2-ghidra-cert-validation-bug-jump-instruction.png)
+[![A screenshot of the location of the jump instruction to abuse the certificate bug in battle for middle earth 2](/assets/bfme2-ghidra-cert-validation-bug-jump-instruction.png)](/assets/bfme2-ghidra-cert-validation-bug-jump-instruction.png)
 
 Using [CheatEngine](https://github.com/cheat-engine/cheat-engine) I was able to quickly validate that my change really worked.
 I attached myself to the game process and then jumped to `game.dat+00a8d096`, which is the address of the if statement on line 228.
