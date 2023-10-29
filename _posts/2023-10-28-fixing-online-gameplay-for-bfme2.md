@@ -152,7 +152,7 @@ code [can be found here](https://github.com/DarkAtra/bfme2-patcher/blob/daf27730
 Here's a video of the final result:
 
 <video controls style="max-width: 100%;">
-    <source src="/assets/bfme2-online-in-action.mp4" type="video/mp4">
+    <source src="/assets/bfme2-online-video.mp4" type="video/mp4">
 </video>
 
 ## The server side
