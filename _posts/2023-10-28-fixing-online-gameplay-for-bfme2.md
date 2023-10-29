@@ -12,12 +12,12 @@ Either way, it's one of the few games that I can motivate myself to write softwa
 
 If you've ever tried to play the game in multiplayer, you've probably noticed that **EA has shut down the online servers**.
 While the community has found many ways to continue playing against each other, for example via [GameRanger](https://en.wikipedia.org/wiki/GameRanger),
-only [the 3rd age online](https://t3aonline.net) managed to restore the games original online feature.
+only [T3A:Online](https://t3aonline.net) managed to restore the games original online feature.
 They achieved this by building their own GameSpy servers and then modified the game to use these instead of the original ones.
 As a software developer, I have always wondered how exactly stuff like this works. To my surprise, the source code was not available.
 Neither for the t3a online servers, nor for the client side modifications to the game.
 The reasoning seemed to be simple: they didn't want the community to fragment any further.
-The risk of introducing additional servers that could compete with t3a:online seemed quite high.
+The risk of introducing additional servers that could compete with T3A:Online seemed quite high.
 Obviously this was quite disappointing for me as I could not satisfy my thirst for knowledge.
 But there is another problem with that: the service could simply die if the maintainers lose interest.
 Not to mention that it also hinders others in the community from contributing bugfixes and features.
@@ -30,7 +30,7 @@ Well, let's [attempt to change that](https://github.com/anzz1/openspy-client/iss
 
 ## The client side
 
-It's easier to start with the client side as it's fairly simple to verify my implementation by just testing if a connection to the existing t3a:online servers
+It's easier to start with the client side as it's fairly simple to verify my implementation by just testing if a connection to the existing T3A:Online servers
 can be established.
 By looking at
 how [the online functionality for other games is restored](https://github.com/anzz1/openspy-client/blob/f18d410fc0cfe2e69ec32e93f088209527093749/include/game_cry.h#L90-L95),
