@@ -12,7 +12,7 @@ Either way, it's one of the few games that I can motivate myself to write softwa
 
 If you've ever tried to play the game in multiplayer, you've probably noticed that **EA has shut down the online servers**.
 While the community has found many ways to continue playing against each other, for example via [GameRanger](https://en.wikipedia.org/wiki/GameRanger),
-only [T3A:Online](https://t3aonline.net) managed to restore the games original online feature.
+only [T3A:Online](https://t3aonline.net) has managed to restore the game's original online feature.
 They achieved this by building their own GameSpy servers and then modified the game to use these instead of the original ones.
 
 As a software developer, I have always wondered how exactly stuff like this works. To my surprise, the source code was not available.
