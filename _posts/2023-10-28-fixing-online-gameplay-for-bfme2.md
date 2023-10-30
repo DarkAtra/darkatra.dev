@@ -1,5 +1,5 @@
 ---
-title: "Fixing Online Gameplay for Battle for Middle-Earth 2"
+title: "The magic behind restoring multiplayer for Battle for Middle-Earth 2 - Part 1"
 date: 2023-10-28
 ---
 
@@ -157,4 +157,4 @@ Here's a video of the final result:
 
 ## The server side
 
-TBD
+I haven't managed to connect to the OpenSpy servers yet, but I'll post a part 2 as soon as I find something new.
