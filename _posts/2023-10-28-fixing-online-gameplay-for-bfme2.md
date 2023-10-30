@@ -1,7 +1,7 @@
 ---
 title: "The magic behind restoring multiplayer for Battle for Middle-Earth 2 - Part 1"
 date: 2023-10-28
-seo_title: Restore Multiplayer for Battle for Middle-Earth 2
+seo_title: Restoring Multiplayer for Battle for Middle-Earth 2
 seo_description: A writeup on what it takes to restore online functionality for Battle for Middle-Earth 2 in a similar fashion to T3A:Online.
 ---
 
