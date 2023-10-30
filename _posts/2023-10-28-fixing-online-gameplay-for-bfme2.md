@@ -36,7 +36,7 @@ By looking at
 how [the online functionality for other games is restored](https://github.com/anzz1/openspy-client/blob/f18d410fc0cfe2e69ec32e93f088209527093749/include/game_cry.h#L90-L95),
 I assumed that there's only two things to implement:
 
-1. a hook for the `gethostbyname` function that redirect GameSpy/EA specific DNS queries
+1. a hook for the `gethostbyname` function to redirect GameSpy/EA specific DNS queries
 2. a patch so that the game skips the certificate validation when it connects to the online servers
 
 I found the hosts that I had to redirect DNS queries for by looking at the `t3aonline.dll` with [Ghidra](https://github.com/NationalSecurityAgency/ghidra),
