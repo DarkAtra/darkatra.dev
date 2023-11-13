@@ -1,6 +1,8 @@
 # See: https://github.com/jekyll/minima/blob/master/_config.yml
 plugins:
   - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-seo-tag
 
 remote_theme: jekyll/minima@85374864e0311f544f49139078927b41ecbe8792
 
