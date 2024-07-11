@@ -3,6 +3,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
 
 remote_theme: jekyll/minima@85374864e0311f544f49139078927b41ecbe8792
 
