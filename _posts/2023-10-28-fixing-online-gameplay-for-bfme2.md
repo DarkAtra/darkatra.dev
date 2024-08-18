@@ -119,11 +119,11 @@ The easiest way I've found was to insert it in line 228, as shown in the followi
 
 [![A screenshot of the location of the jump instruction to abuse the certificate bug in battle for middle earth 2](/assets/bfme2-ghidra-cert-validation-bug-jump-instruction.png)](/assets/bfme2-ghidra-cert-validation-bug-jump-instruction.png)
 
-Using [CheatEngine](https://github.com/cheat-engine/cheat-engine) I was able to quickly validate that my change really worked.
+Using [CheatEngine](https://github.com/cheat-engine/cheat-engine) I was able to quickly validate that my change would work.
 I attached myself to the game process and then jumped to `game.dat+00a8d096`, which is the address of the if statement on line 228.
 Then I changed the statement so that it jumps to `00A8D0DE`, which is line 237. I was now able to successfully log in to the T3A:Online servers.
 
-Now all that was left was to write code that would do all of this automatically. This is how it looks like:
+Now all that was left was to write code that would do all of this automatically. This is what it looks like:
 
 ```cpp
 HANDLE currentProcess = GetCurrentProcess();
