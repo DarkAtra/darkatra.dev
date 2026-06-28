@@ -10,7 +10,7 @@ real-time strategy games released in 2006, yet it's something special, for me at
 Maybe because it's set in the world of JRR Tolkien or perhaps just because it reminds me of my childhood.
 Either way, it's one of the few games that I can motivate myself to write software for.
 
-# The issue with online gameplay
+## The issue with online gameplay
 
 If you've ever tried to play the game in multiplayer, you've probably noticed that **EA has shut down the online servers**.
 While the community has found many ways to continue playing against each other, for example via [GameRanger](https://en.wikipedia.org/wiki/GameRanger),
@@ -25,13 +25,13 @@ Obviously this was quite disappointing for me as I had no reference to learn fro
 But there is another problem with that: the service could simply die if the maintainers lose interest.
 Not to mention that it also hinders others in the community from contributing bugfixes and features.
 
-# The solution
+## The solution
 
 A few months ago I stumbled upon [OpenSpy, an open source project](https://github.com/chc/openspy-core-v2) that aims to restore the online functionality for
 GameSpy based games. Unfortunately, The Battle for Middle Earth II was not yet supported.
 Well, let's [attempt to change that](https://github.com/anzz1/openspy-client/issues/3).
 
-## The client side
+### The client side
 
 It's easier to start with the client side as it's fairly simple to verify by just testing if a connection to the existing T3A:Online servers can be established.
 By looking at
@@ -157,6 +157,6 @@ Here's a video of the final result:
     <source src="/assets/bfme2-online-video.mp4" type="video/mp4">
 </video>
 
-## The server side
+### The server side
 
 I haven't managed to connect to the OpenSpy servers yet, but I'll post a part 2 as soon as I find something new.

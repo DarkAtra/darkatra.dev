@@ -1,49 +1,62 @@
 ---
-title: "Sage INI File Language Support for IntelliJ IDEA"
+title: "Sage Engine INI File Language Support for IntelliJ IDEA"
 date: 2026-06-27
-seo_title: Sage INI File Language Support for IntelliJ IDEA
-seo_description: A writeup on how i built a plugin for IntelliJ IDEA that supports syntax highlighting, formatting and code navigation for Sage Engine INI files.
+seo_title: Sage Engine INI File Language Support for IntelliJ IDEA
+seo_description: A write-up about how I built a plugin for IntelliJ IDEA that adds syntax highlighting, formatting, and code navigation for Sage Engine INI files.
 ---
 
-It’s been a while since I last posted here, and looking back, I’m surprised by how quickly the time has passed. Since then, I’ve been working on a few things
-BfME related, but my most recent project felt worth writing about: so here we are. This blog post is about a plugin
-for [IntelliJ IDEA](https://www.jetbrains.com/idea/) that adds syntax highlighting, code formatting, completion, and navigation features for Sage Engine INI
-files.
+It's been a while since I last posted here, and looking back, I'm surprised by how quickly the time has passed. Since then, I've been working on a few
+BfME-related projects, but my most recent one felt worth writing about. So here we are: this post is about a plugin for
+[IntelliJ IDEA](https://www.jetbrains.com/idea/) that adds syntax highlighting, code formatting, completion, and navigation features for Sage Engine INI files.
 
 The plugin is called [Sage Engine INI](https://github.com/DarkAtra/bfme2-idea-plugin), and while I mostly built it with
-[The Lord of the Rings: The Battle for Middle-earth II](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Battle_for_Middle-earth_II) in mind, the
-format is used by other Sage Engine games as well.
+[The Lord of the Rings: The Battle for Middle-earth II](https://en.wikipedia.org/wiki/The_Lord_of_the_Rings:_The_Battle_for_Middle-earth_II) in mind, it
+probably works for other Sage Engine games as well.
 
-# But... Why?
+## Motivation
 
-First of all, I have to admit that I’m very comfortable in IntelliJ IDEA. It has been my main IDE for years, and I’ve spent a lot of time refining my
-keybindings and making the whole setup feel like my own. What kept bothering me, though, was the lack of proper syntax highlighting, navigation actions, and -
-most importantly - a formatter for Sage INI files. So, a few weeks ago, I decided it was time to finally do something about it.
+IntelliJ IDEA has been my primary IDE for years, and I've spent countless hours refining my keybindings and customizing it so that the whole setup feels like my
+own. Whenever I worked on BFME-related projects, though, I found myself switching to a plain text editor instead. Without proper language support for Sage
+Engine INI files, most of IntelliJ's advanced features simply weren't useful, and the IDE felt unnecessarily heavy compared to lightweight editors like VS Code
+or Notepad++. Yet those editors weren't the ideal solution either. What I really wanted was an IntelliJ plugin that brought first-class support for Sage Engine
+INI files, complete with syntax highlighting, code navigation, and - most importantly - a formatter. A few weeks ago, I finally decided it was time to build
+exactly that.
 
-# The features
+## Use of AI
 
-The project is still in its early stages, and the code is far from perfect, but it already has a few features that make working with Sage INI files noticeably
-easier.
+Before looking at the features, it's worth mentioning that this project was intentionally built with the assistance of AI. One of the goals was to better
+understand where AI is genuinely useful and where its limitations become apparent. Rather than attempting to fully understand IntelliJ's Platform API upfront, I
+used AI to build the initial version of the plugin, explore unfamiliar extension points, generate tests, and refactor repetitive code.
 
-## Syntax Highlighting
+This also influenced how I approached code quality. Instead of reviewing every change line by line, I took a more pragmatic approach and focused on whether the
+implementation behaved correctly, primarily through automated tests. As a result, the current codebase is not polished and does not meet my usual standards for
+production-quality code. At this point, it's better viewed as a proof-of-concept.
 
-The plugin registers Sage Engine INI files as their own file type and provides syntax highlighting for the things I care about most.
+## The features
+
+The project is still in its early stages, and there's plenty of room for improvement, but it already includes a number of features that make working with Sage
+Engine INI files much more convenient. These include syntax highlighting, code formatting for files such as `armor.ini`, `upgrade.ini`, `weapon.ini`, and object
+definition files, code folding, as well as navigation and autocompletion for `#include` directives.
+
+Let's take a closer look at some of the most notable features.
+
+### Syntax Highlighting
 
 [![A screenshot of syntax highlighting](/assets/bfme2-ini-syntax-highlighting.png)](/assets/bfme2-ini-syntax-highlighting.png)
 
-## Formatting
+### Formatting
 
-This is probably my favorite feature. There’s something incredibly satisfying about pressing a single button and having the entire file formatted consistently.
-It might not look like much at first glance, but the formatter already takes care of a bunch of small things that make files feel cleaner and more consistent.
-For example, it:
+This is probably my favorite feature. There's something incredibly satisfying about pressing a single button and watching the entire file snap into a clean,
+consistent format. It might not seem particularly exciting at first glance, but the formatter already handles a surprising number of small details that make
+Sage Engine INI files much easier to read and maintain. Among other things, it:
 
-* indents blocks
-* aligns properties
-* removes excessive whitespace almost everywhere, including both code and comments
-* removes "empty" comments at the end of lines, such as `//`, `--`, or `;`
-* replaces tabs with spaces, although there might be a configuration option for all the tab enjoyers in the future
+* indents most blocks consistently
+* aligns property values for improved readability
+* removes unnecessary whitespace throughout the file, including inside comments
+* strips redundant empty comments at the end of a line
+* replaces tabs with spaces (although support for tabs might be added in the future for all the tab enjoyers)
 
-Here’s a quick comparison at what the formatter changes in `aragorn.ini`:
+Here's a side-by-side comparison showing the changes for a section of `aragorn.ini`:
 
 <div style="display: flex; gap: 1rem;">
   <div>
@@ -60,32 +73,27 @@ Here’s a quick comparison at what the formatter changes in `aragorn.ini`:
   </div>
 </div>
 
-## Include Navigation and Completion
+### Include Navigation and Completion
 
-Another small quality-of-life improvement is support for `#include` macros. If an INI file contains something like:
+Another useful quality-of-life improvement is support for `#include` macros. When an INI file contains an `#include` macro such as:
 
 ```ini
 #include "data/ini/object/goodfaction/units/men/aragorn.inc"
 ```
 
-the plugin can resolve the referenced file, jump to it via the usual "go to declaration" action, and offer path completion based on the directory of the
-current file. This is one of those features that does not sound particularly exciting until you have to jump between included files over and over again.
+the plugin can resolve the referenced file, jump to it via the usual "go to declaration" action, and offer path completion based on the current file's
+directory.
 
-# Use of AI
+## What's Next?
 
-I should probably also mention that this project was intentionally built with a lot of AI assistance. Part of the goal was to better understand where AI works
-well in this kind of project and where its limits become visible. Instead of trying to fully understand every IntelliJ Platform API up front, I used AI to
-draft implementation plans, explore unfamiliar extension points, create tests, and refactor some of the repetitive code.
+There's still a lot of room for improvement. Some of the next ideas on the roadmap include richer inspections, smarter completion for known property values, and
+a deeper semantic understanding of the underlying game data.
 
-This also means that I treated the resulting code somewhat pragmatically: I did not review most of it line by line, but focused on whether it fulfilled the
-intended behavior through automated tests. In other words, the review process was more about verifying the intended behavior rather than manually inspecting
-every single line of code.
+For example, navigation support could be extended further to support jumping to related game definitions for armors, weapons, and special powers. On top
+of that, additional inspection rules could catch invalid or misspelled values. The parser itself also still has room to evolve, especially as more real-world
+INI files reveal edge cases and inconsistencies that need to be handled more robustly.
 
-# What’s Next?
+For now, though, I'm already happy with the result. Editing Sage Engine INI files in IntelliJ IDEA feels much nicer than before, and that was exactly the goal.
 
-There are still plenty of things I would like to improve. Some ideas that come to mind are more inspections, smarter completion for known values, and eventually
-maybe deeper understanding of the game data itself. I also want to keep improving the parser as I run into more real-world INI files with edge cases.
-
-For now, though, I’m already happy with the result. Editing Sage Engine INI files in IntelliJ IDEA feels much nicer than before, and that was exactly the goal.
-
-The source code is available on GitHub here: [https://github.com/DarkAtra/bfme2-idea-plugin](https://github.com/DarkAtra/bfme2-idea-plugin)
+If this blog post sparked your interest, feel free to try it out - the [source code is available on GitHub](https://github.com/DarkAtra/bfme2-idea-plugin) and
+the plugin should soon be available for [download on the Jetbrains Marketplace](https://plugins.jetbrains.com/plugin/32514-sage-engine-ini).
