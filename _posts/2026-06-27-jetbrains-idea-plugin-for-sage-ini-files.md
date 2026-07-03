@@ -97,4 +97,4 @@ For now, though, I'm already happy with the result. Editing Sage Engine INI file
 
 If this blog post sparked your interest, feel free to try it out - the [source code is available on GitHub](https://github.com/DarkAtra/bfme2-idea-plugin).
 
-<iframe width="245px" height="48px" src="https://plugins.jetbrains.com/embeddable/install/32514"></iframe>
+<iframe width="245px" height="48px" style="border: none" src="https://plugins.jetbrains.com/embeddable/install/32514"></iframe>
