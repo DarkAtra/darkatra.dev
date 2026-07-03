@@ -95,5 +95,6 @@ INI files reveal edge cases and inconsistencies that need to be handled more rob
 
 For now, though, I'm already happy with the result. Editing Sage Engine INI files in IntelliJ IDEA feels much nicer than before, and that was exactly the goal.
 
-If this blog post sparked your interest, feel free to try it out - the [source code is available on GitHub](https://github.com/DarkAtra/bfme2-idea-plugin) and
-the plugin should soon be available for [download on the Jetbrains Marketplace](https://plugins.jetbrains.com/plugin/32514-sage-engine-ini).
+If this blog post sparked your interest, feel free to try it out - the [source code is available on GitHub](https://github.com/DarkAtra/bfme2-idea-plugin).
+
+<iframe width="245px" height="48px" src="https://plugins.jetbrains.com/embeddable/install/32514"></iframe>
